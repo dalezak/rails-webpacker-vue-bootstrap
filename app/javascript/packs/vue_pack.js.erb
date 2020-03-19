@@ -1,0 +1,30 @@
+import Vue from 'vue/dist/vue.esm';
+import VueColcade from 'vue-colcade';
+import TurbolinksAdapter from 'vue-turbolinks';
+import moment from 'moment';
+import Axios from 'axios';
+import VueAxios from 'vue-axios';
+import VueForm from "vue-form-for";
+import VueMoment from "vue-moment";
+import VueCanCan from 'vue-cancan';
+ 
+Vue.use(VueForm);
+Vue.use(VueMoment);
+Vue.use(VueColcade);
+Vue.use(VueAxios, Axios);
+Vue.use(TurbolinksAdapter);
+Vue.use(VueCanCan, { rules: window.Abilities });
+
+import '../filters/index.js.erb';
+import '../components/index.js.erb';
+
+export const EventBus = new Vue();
+window.Event = EventBus;
+
+document.addEventListener('turbolinks:load', () => {
+  const element = document.getElementById('app');
+  if (element != null) {
+    const app = new Vue({}).$mount(element);
+    console.log("Loaded Vue", app);
+  }
+});

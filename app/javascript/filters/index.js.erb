@@ -1,0 +1,6 @@
+import Vue from 'vue/dist/vue.esm';
+<% filters = Rails.application.root.join('app', 'javascript', 'filters', '**', '*.js') %>
+<% Dir.glob(filters).each do |path| %>
+  <% filter = File.basename(path, ".js") %>
+  import <%= filter.underscore.camelize %> from "<%= path %>";
+<% end %>

@@ -1,0 +1,4 @@
+<% stylesheets = Rails.application.root.join('app', 'javascript', 'stylesheets', '**', '*.{css,scss}') %>
+<% Dir.glob(stylesheets).each do |file| %>
+  import '<%= file %>';
+<% end %>

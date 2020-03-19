@@ -1,0 +1,26 @@
+<div class="share">
+  <p>
+    <%= link_to "mailto:?&subject=#{CGI.escape(title)}&body=#{CGI.escape(description)}",
+                class: 'btn btn-block btn-email', title: 'Share via Email', target: '_blank' do %>
+      <i class="fa fa-envelope"></i> Email
+    <% end %>
+  </p>
+  <p>
+    <%= link_to "http://twitter.com/intent/tweet?status=#{title}+#{url}+#{CGI.escape(tags.split(",").map{ |tag| "##{tag}"}.join(" "))}",
+                data: { popup_width: 600, popup_height: 400}, class: 'btn btn-block btn-twitter', title: 'Share via Twitter', target: '_blank' do %>
+      <i class="fa fab fa-twitter"></i> Twitter
+    <% end %>
+  </p>
+  <p>
+    <%= link_to "http://www.facebook.com/share.php?u=#{url}&title=#{CGI.escape(title)}",
+                data: { popup_width: 600, popup_height: 400}, class: 'btn btn-block btn-linkedin', title: 'Share via Facebook', target: '_blank' do %>
+      <i class="fa fab fa-facebook"></i> Facebook
+    <% end %>
+  </p>
+  <p>
+    <%= link_to "http://www.linkedin.com/shareArticle?mini=true&url=#{url}&title=#{CGI.escape(title)}&source=goingto.com",
+                data: { popup_width: 600, popup_height: 400}, class: 'btn btn-block btn-linkedin', title: 'Share via LinkedIn', target: '_blank' do %>
+      <i class="fa fab fa-linkedin"></i> LinkedIn
+    <% end %>
+  </p>
+</div>

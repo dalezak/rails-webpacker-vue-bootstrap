@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Starter</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+    <%= render 'partials/metatags' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body class="<%= body_class(params) %>">
+    <div id="app" class="container mt-4">
+        <nav class="d-block">
+            <%= render 'partials/navbar' %>
+        </nav>
+        <div class="container-fluid">
+            <div class="p-3 p-md-4 p-lg-5">
+                <%= render 'partials/messages' %>
+                <alert-messages></alert-messages>
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+    <%= render 'partials/modal' %>
+    <%= render 'partials/styles' %>
+    <%= render 'partials/javascripts' %>
+    <%= render 'partials/analytics' %>
+</body>
+
 </html>

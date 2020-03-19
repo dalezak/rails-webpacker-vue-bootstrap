@@ -1,0 +1,181 @@
+AllCops:
+  Exclude:
+  - bin/*
+  - test/*.rb
+  - test/controllers/*.rb
+  - db/schema.rb
+  - db/migrate/*.rb
+  - db/seeds/*.rb
+  - config/puma.rb
+  - config/routes.rb
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 125
+
+Metrics/BlockLength:
+  Max: 125
+
+Metrics/ClassLength:
+  Max: 500
+
+Metrics/ModuleLength:
+  Max: 250
+
+Metrics/CyclomaticComplexity:
+  Max: 100
+
+Metrics/PerceivedComplexity:
+  Max: 100
+
+Style/GuardClause:
+  Enabled: false
+
+Layout/TrailingEmptyLines:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/RedundantBegin:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
+
+Style/IdenticalConditionalBranches:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/MultilineIfModifier:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Style/SymbolProc:
+  Enabled: false
+
+Style/DateTime:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/Proc:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Layout/EmptyLines:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Layout/LeadingCommentSpace:
+  Enabled: false
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Layout/FirstParameterIndentation:
+  Enabled: false
+
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+Layout/MultilineBlockLayout:
+  Enabled: false
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  Enabled: false
+
+Layout/DotPosition:
+  Enabled: false
+
+Layout/FirstArrayElementIndentation:
+  Enabled: false
+
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Lint/UnusedBlockArgument:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/SpaceInLambdaLiteral:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false  
+
+Layout/TrailingWhitespace:
+  Enabled: false  
+
+Style/WhileUntilModifier:
+  Enabled: false
+
+Layout/SpaceInsideBlockBraces:
+  Enabled: false
+  
+Style/BracesAroundHashParameters:
+  Enabled: false
+  
+ Style/WhileUntilDo:
+  Enabled: false 

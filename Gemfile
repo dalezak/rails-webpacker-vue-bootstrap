@@ -31,6 +31,9 @@ gem "sendgrid-ruby", "~> 6.1"
 
 gem "faker", "~> 2.10"
 
+gem "js-routes", "~> 1.4"
+gem "vueonrails", "~> 0.3.0"
+
 gem "httparty", "~> 0.18.0"
 gem "nokogiri", "~> 1.10"
 gem "simple-rss", "~> 1.3"

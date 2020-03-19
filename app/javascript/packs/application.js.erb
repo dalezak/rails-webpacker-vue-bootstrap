@@ -1,0 +1,27 @@
+import Rails from 'rails-ujs';
+import Channels from 'channels';
+import Turbolinks from 'turbolinks';
+import * as ActiveStorage from 'activestorage';
+
+import 'jquery';
+import 'popper.js';
+import 'bootstrap';
+import 'bootstrap/dist/js/bootstrap';
+
+window.humanize = require('humanize-string');
+window.titleize = require('titleize');
+
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
+
+import '../images/index.js.erb';
+import '../stylesheets/index.js.erb';
+import '../javascripts/index.js.erb';
+
+import Routes from '../routes/index.js.erb';
+console.log("Loaded Routes", Routes);
+
+window.Routes = Routes;
+
+console.log('Loaded Application');

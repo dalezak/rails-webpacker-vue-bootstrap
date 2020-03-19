@@ -1,0 +1,7 @@
+import Vue from 'vue/dist/vue.esm';
+<% vues = Rails.application.root.join('app', 'javascript', 'components', '**', '*.vue') %>
+<% Dir.glob(vues).each do |path| %>
+  <% component = File.basename(path, ".vue") %>
+  import <%= component.underscore.camelize %> from "<%= path %>";
+  Vue.component("<%= component.underscore.dasherize %>", <%= component.underscore.camelize %>);
+<% end %>

@@ -1,0 +1,7 @@
+#navbar {
+  .dropdown-item-checked::after {
+    content: '✓';
+    float: right;
+    font-weight: 600;
+  }
+}

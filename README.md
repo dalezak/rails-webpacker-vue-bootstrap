@@ -1,12 +1,23 @@
 # Rails 6  
 ## Boilerplate for Webpacker, Vue, Bootstrap, FontAwesome
 
-This is a boilerplate project sharing some tips and tricks for using Rails 6 with Webpacker, Vue, Bootstrap and FontAwesome.
+This is a boilerplate project sharing some tips and recommendations for using Rails 6 with Webpacker, Vue, Bootstrap and FontAwesome.
 
 #### Init Rails Project
 First create a new Rails project with options to use Git, Postgres as a database and Vue for the frontend framework.
 ```
 rails new starter --git --skip-sprockets --webpack=vue --database=postgresql
+```
+
+#### Add Procfile File
+```
+web: bundle exec puma -C config/puma.rb
+```
+
+#### Add Profile.dev File
+```
+web: bundle exec rails s -p 3000 
+webpack: ./bin/webpack-dev-server
 ```
 
 #### Add Server Gems
@@ -67,6 +78,12 @@ bundle add figaro
 bundle add faker
 ```
 
+#### Add Frontend Gems
+```
+bundle add js-routes
+bundle add vueonrails
+```
+
 #### Add HTTP Gems
 ```
 bundle add httparty
@@ -106,16 +123,102 @@ Next add some node packages we'll use on the frontend.
 ```
 yarn add webpack webpack-cli pnp-webpack-plugin
 yarn add turbolinks rails-ujs activestorage
-yarn add jquery bootstrap popper.js
+yarn add jquery bootstrap popper.js css-loader
 yarn add colcade vue-colcade
 yarn add axios vue-axios vue-turbolinks
 yarn add @fortawesome/fontawesome-free @fortawesome/fontawesome-svg-core @fortawesome/free-regular-svg-icons
+yarn add titleize pluralize humanize-string
+yarn add moment moment-timezone vue-moment
+yarn add vue-cancan vue-form-for
+yarn add tempusdominus-core tempusdominus-bootstrap-4
 ```
 
-#### Config Webpacker Packs
+#### Enable Sprockets Railtie
+In `config/application.rb`, uncoment
+```
+require "sprockets/railtie"
+```
+
+#### Enable Subfolder Models
+In `config/application.rb`, add these lines to allow subfolders to be loaded
+```
+config.autoload_paths += Dir[Rails.root.join('app', 'jobs', '**/')]
+config.autoload_paths += Dir[Rails.root.join('app', 'models', '**/')]
+config.autoload_paths += Dir[Rails.root.join('app', 'mailers', '**/')]
+```
+
+#### Add ERB Webpacker
+Enable ERB on our frontend so we can dynamically load javascript, stylesheets, images
 ```
 rails webpacker:install:erb
-rails webpacker:install:typescript
+```
+
+#### Add ERB Indexes
+Add `app/javascript/components/index.js.erb`
+```
+import Vue from 'vue/dist/vue.esm';
+<% vues = Rails.application.root.join('app', 'javascript', 'components', '**', '*.vue') %>
+<% Dir.glob(vues).each do |path| %>
+  <% component = File.basename(path, ".vue") %>
+  import <%= component.underscore.camelize %> from "<%= path %>";
+  Vue.component("<%= component.underscore.dasherize %>", <%= component.underscore.camelize %>);
+<% end %>
+```
+Add `app/javascript/filters/index.js.erb`
+```
+import Vue from 'vue/dist/vue.esm';
+<% filters = Rails.application.root.join('app', 'javascript', 'filters', '**', '*.js') %>
+<% Dir.glob(filters).each do |path| %>
+  <% filter = File.basename(path, ".js") %>
+  import <%= filter.underscore.camelize %> from "<%= path %>";
+<% end %>
+```
+Add `app/javascript/javascripts/index.js.erb`
+```
+<% javascripts_glob = Rails.application.root.join('app', 'javascript', 'javascripts', '**', '*.js') %>
+<% Dir.glob(javascripts_glob).each do |file| %>
+  import '<%= file %>';
+<% end %>
+```
+Add `app/javascript/images/index.js.erb`
+```
+<% images = Rails.application.root.join('app', 'javascript', 'images', '**', '*.{png,svg,jpg}') %>
+<% Dir.glob(images).each do |image| %>
+  import '<%= image %>';
+<% end %>
+```
+Add `app/javascript/stylesheets/index.js.erb`
+```
+<% stylesheets = Rails.application.root.join('app', 'javascript', 'stylesheets', '**', '*.{css,scss}') %>
+<% Dir.glob(stylesheets).each do |file| %>
+  import '<%= file %>';
+<% end %>
+```
+Add `app/javascript/routes/index.js.erb` 
+```
+<%= JsRoutes.generate() %>
+```
+
+#### Update Webpacker Environment
+Update `config/webpack/environment.js`
+```
+const { environment } = require('@rails/webpacker')
+const { VueLoaderPlugin } = require('vue-loader')
+const vue = require('./loaders/vue')
+const erb = require('./loaders/erb')
+const webpack = require('webpack')
+environment.plugins.append('Provide', new webpack.ProvidePlugin({
+  $: 'jquery',
+  jquery: 'jquery',
+  jQuery: 'jquery',
+  'window.jQuery': 'jquery',
+  Popper: ['popper.js', 'default'],
+  moment: 'moment'
+}))
+environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
+environment.loaders.prepend('vue', vue)
+environment.loaders.prepend('erb', erb)
+module.exports = environment
 ```
 
 #### Setup Database
@@ -142,17 +245,6 @@ bundle exec figaro install
 #### Setup Jobs
 ```
 rails generate delayed_job:active_record
-```
-
-#### Add Procfile File
-```
-web: bundle exec puma -C config/puma.rb
-```
-
-#### Add Profile.dev File
-```
-web: bundle exec rails s -p 3000 -b lvh.me
-webpack: ./bin/webpack-dev-server
 ```
 
 #### Add GitHub Templates

@@ -1,0 +1,27 @@
+$primary: #1976d2;
+$secondary: #4caf50;
+$success: #52BE80;
+$danger: #C0392B;
+$warning: #F4D03F;
+$info: #7FB3D5;
+$light: #eeeeee;
+$dark: #cccccc;
+
+@import "~bootstrap/scss/bootstrap";
+
+html, body {
+  height: 100%;
+}
+img {
+  @extend .img-fluid;
+  margin: 0 auto;
+}
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

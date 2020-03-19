@@ -1,0 +1,2 @@
+<%= link_to "Load more...", request.params.merge(limit: @limit, offset: @offset + @limit),
+            remote: true, data: { more_cards: '#cards' }, id: "more", class: 'btn btn-block btn-outline-secondary mt-4 mb-4', title: "Load more" %>
