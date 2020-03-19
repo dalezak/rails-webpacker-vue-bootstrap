@@ -1,14 +1,13 @@
 # Rails 6  
 ## Boilerplate for Webpacker and Vue
 
-This is a boilerplate project sharing some tips and tricks for using Rails 6 with Webpacker and Vue.
+This is a boilerplate project sharing some tips and tricks for using Rails 6 with Webpacker, Vue, Bootstrap and FontAwesome.
 
 #### Init Rails Project
 First create a new Rails project with options to use Git, Postgres as a database and Vue for the frontend framework.
 ```
 rails new starter --git --skip-sprockets --webpack=vue --database=postgresql
 ```
-Grab a coffee while Rails does it's magic :coffee:
 
 #### Add Server Gems
 ```
