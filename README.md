@@ -14,7 +14,6 @@ Grab a coffee while Rails does it's magic :coffee:
 ```
 bundle add puma
 bundle add puma_worker_killer
-bundle add rack-timeout-puma
 ```
 
 #### Add Frontend Gems
@@ -100,12 +99,11 @@ bundle add rack-mini-profiler
 #### Add Node Packages
 Next add some node packages we'll use on the frontend.
 ```
-yarn add webpack webpack-cli
+yarn add webpack webpack-cli pnp-webpack-plugin
 yarn add turbolinks rails-ujs activestorage
 yarn add jquery bootstrap popper.js
 yarn add colcade vue-colcade
 yarn add axios vue-axios vue-turbolinks
-yarn add pnp-webpack-plugin
 yarn add @fortawesome/fontawesome-free @fortawesome/fontawesome-svg-core @fortawesome/free-regular-svg-icons
 ```
 
