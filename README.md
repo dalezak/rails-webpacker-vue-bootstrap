@@ -1,5 +1,5 @@
 # Rails 6  
-## Boilerplate for Webpacker and Vue
+## Boilerplate for Webpacker, Vue, Bootstrap, FontAwesome
 
 This is a boilerplate project sharing some tips and tricks for using Rails 6 with Webpacker, Vue, Bootstrap and FontAwesome.
 
@@ -95,6 +95,12 @@ bundle add binding_of_caller
 bundle add rack-mini-profiler
 ```
 
+#### Update Gems
+```
+bundle install
+bundle update
+```
+
 #### Add Node Packages
 Next add some node packages we'll use on the frontend.
 ```
@@ -114,8 +120,6 @@ rails webpacker:install:typescript
 
 #### Setup Database
 ```
-bundle install
-bundle update
 bundle exec rake db:create
 bundle exec rake db:migrate
 ```
