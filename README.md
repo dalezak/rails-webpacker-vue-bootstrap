@@ -143,6 +143,17 @@ bundle exec figaro install
 rails generate delayed_job:active_record
 ```
 
+#### Add Procfile File
+```
+web: bundle exec puma -C config/puma.rb
+```
+
+#### Add Profile.dev File
+```
+web: bundle exec rails s -p 3000 -b lvh.me
+webpack: ./bin/webpack-dev-server
+```
+
 #### Generate DB Diagram
 ```
 brew install graphviz
