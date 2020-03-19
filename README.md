@@ -154,6 +154,60 @@ web: bundle exec rails s -p 3000 -b lvh.me
 webpack: ./bin/webpack-dev-server
 ```
 
+#### Add GitHub Templates
+*.github/ISSUE_TEMPLATE/bug-report.md*
+```
+---
+name: Bug Report
+about: Report something that is broken or not working as intended
+title: ''
+labels: 'Type: Bug'
+assignees: ''
+---
+
+#### Expected Behaviour
+
+#### Actual Behaviour
+
+#### Steps to Reproduce
+-
+
+```
+*.github/ISSUE_TEMPLATE/feature-request.md*
+```
+---
+name: Feature Request
+about: Suggest an idea for a new feature or enhancement to existing features
+title: ''
+labels: 'Type: Feature'
+assignees: ''
+---
+
+#### Describe Problem
+
+#### Suggest Solution
+
+#### Additional Details
+
+```
+*.github/ISSUE_TEMPLATE/code-maintenance.md*
+```
+---
+name: Code Maintenance
+about: Project cleanup, improve documentation, refactor code
+title: ''
+labels: 'Type: Maintenance'
+assignees: ''
+---
+
+#### Describe Problem
+
+#### Suggest Changes
+
+#### Provide Examples
+
+```
+
 #### Generate DB Diagram
 ```
 brew install graphviz
