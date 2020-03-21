@@ -13,20 +13,23 @@ class StepsController < ApplicationController
       format.html { render layout: true }
       format.json { }
     end
-
   end
 
   def show
+    authorize! :show, @step
   end
 
   def new
+    authorize! :new, Step
     @step = Step.new
   end
 
   def edit
+    authorize! :edit, @step
   end
 
   def create
+    authorize! :create, Step
     @step = Step.new(step_params)
     respond_to do |format|
       if @step.save
@@ -40,6 +43,7 @@ class StepsController < ApplicationController
   end
 
   def update
+    authorize! :update, @step
     respond_to do |format|
       if @step.update(step_params)
         format.html { redirect_to @step, notice: 'Step was successfully updated.' }
@@ -52,6 +56,7 @@ class StepsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @step
     @step.destroy
     respond_to do |format|
       format.html { redirect_to steps_url, notice: 'Step was successfully destroyed.' }

@@ -6,31 +6,36 @@ require_dependency "<%= namespaced_file_path %>/application_controller"
 class <%= controller_class_name %>Controller < ApplicationController
   before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
-  # GET <%= route_url %>
-  # GET <%= route_url %>.json
   def index
-    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
+    authorize! :index, <%= class_name %>
+    @search = params.fetch(:search, nil)
+    @offset = params.fetch(:offset, 0).to_i
+    @limit = [params.fetch(:limit, 12).to_i, 48].min
+    query = <%= class_name %>.for_search(@search)
+    @<%= plural_table_name %> = query.limit(@limit).offset(@offset).order(created_at: :asc).all
+    @<%= plural_table_name %>_count = query.count(:all)
+    respond_to do |format|
+      format.html { render layout: true }
+      format.json { }
+    end
   end
 
-  # GET <%= route_url %>/1
-  # GET <%= route_url %>/1.json
   def show
+    authorize! :show, @<%= singular_table_name %>
   end
 
-  # GET <%= route_url %>/new
   def new
+    authorize! :new, <%= class_name %>
     @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
   end
 
-  # GET <%= route_url %>/1/edit
   def edit
+    authorize! :edit, @<%= singular_table_name %>
   end
 
-  # POST <%= route_url %>
-  # POST <%= route_url %>.json
   def create
+    authorize! :create, <%= class_name %>
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
-
     respond_to do |format|
       if @<%= orm_instance.save %>
         format.html { redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully created.'" %> }
@@ -42,9 +47,8 @@ class <%= controller_class_name %>Controller < ApplicationController
     end
   end
 
-  # PATCH/PUT <%= route_url %>/1
-  # PATCH/PUT <%= route_url %>/1.json
   def update
+    authorize! :update, @<%= singular_table_name %>
     respond_to do |format|
       if @<%= orm_instance.update("#{singular_table_name}_params") %>
         format.html { redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully updated.'" %> }
@@ -56,9 +60,8 @@ class <%= controller_class_name %>Controller < ApplicationController
     end
   end
 
-  # DELETE <%= route_url %>/1
-  # DELETE <%= route_url %>/1.json
   def destroy
+    authorize! :destroy, @<%= singular_table_name %>
     @<%= orm_instance.destroy %>
     respond_to do |format|
       format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully destroyed.'" %> }
@@ -67,18 +70,18 @@ class <%= controller_class_name %>Controller < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_<%= singular_table_name %>
-      @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
-    end
 
-    # Only allow a list of trusted parameters through.
-    def <%= "#{singular_table_name}_params" %>
-      <%- if attributes_names.empty? -%>
-      params.fetch(<%= ":#{singular_table_name}" %>, {})
-      <%- else -%>
-      params.require(<%= ":#{singular_table_name}" %>).permit(<%= permitted_params %>)
-      <%- end -%>
-    end
+  def set_<%= singular_table_name %>
+    @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
+  end
+
+  def <%= "#{singular_table_name}_params" %>
+    <%- if attributes_names.empty? -%>
+    params.fetch(<%= ":#{singular_table_name}" %>, {})
+    <%- else -%>
+    params.require(<%= ":#{singular_table_name}" %>).permit(<%= permitted_params %>)
+    <%- end -%>
+  end
+  
 end
 <% end -%>

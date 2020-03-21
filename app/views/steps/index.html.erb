@@ -3,8 +3,4 @@
     <%= render '/partials/breadcrumb/add', model: Step %>
     <%= render '/partials/breadcrumb/search' %>
 </ol>
-<% if @steps.empty? %>
-<no-items model="Step" search="<%= @search %>" url="<%= new_step_path %>"></no-items>
-<% else %>
-<grid-cards card="step-card" url="<%= steps_path(format: :json) %>" :limit="<%= @limit %>" :offset="<%= @offset %>" search="<%= @search %>" :more="<%= @steps_count > @steps.length %>" :cards="<%= @steps.to_json() %>"></grid-cards>
-<% end %>
+<step-cards :cards="<%= @steps.to_json() %>" :more="<%= @steps_count > @steps.length %>" :limit="<%= @limit %>" :offset="<%= @offset %>" search="<%= @search %>"></step-cards>
