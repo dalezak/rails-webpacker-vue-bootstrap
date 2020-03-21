@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  name: MyString
+  description: MyText
+  ordinal: 1
+  deleted_at: 2020-03-20 20:27:18
+
+two:
+  type: 
+  name: MyString
+  description: MyText
+  ordinal: 1
+  deleted_at: 2020-03-20 20:27:18

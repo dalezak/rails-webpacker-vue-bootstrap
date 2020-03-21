@@ -1,0 +1,37 @@
+<% if step.errors.any? %>
+  <% step.errors.full_messages.each do |message| %>
+  <div class="alert alert-danger" role="alert">
+    <%= message %>
+  </div>
+  <% end %>
+<% end %>
+<%= form_with(model: step, local: true) do |form| -%>
+<div class="card shadow-sm">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="form-group">
+        <%= form.label :name, class: "font-weight-bold" %>
+        <%= form.text_field :name, placeholder: "Enter name", class: "form-control" %>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="form-group">
+        <%= form.label :description, class: "font-weight-bold" %>
+        <%= form.text_area :description, placeholder: "Enter description", class: "form-control" %>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="form-group">
+        <%= form.label :ordinal, class: "font-weight-bold" %>
+        <%= form.number_field :ordinal, placeholder: "Enter ordinal", class: "form-control" %>
+      </div>
+    </li>
+  </ul>
+  <div class="card-footer">
+    <%= link_to "Cancel", step, class: 'btn btn-outline-secondary float-left' if step.persisted? %>
+    <%= link_to "Cancel", steps_path, class: 'btn btn-outline-secondary float-left' if !step.persisted? %>
+    <%= form.submit "Save", class: "btn btn-primary float-right" if step.persisted? %>
+    <%= form.submit "Create", class: "btn btn-primary float-right" if !step.persisted? %>
+  </div>
+</div>
+<% end %>

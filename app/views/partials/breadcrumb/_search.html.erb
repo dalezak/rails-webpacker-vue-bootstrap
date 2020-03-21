@@ -1,0 +1,8 @@
+<%= form_tag current_url, method: :get, enforce_utf8: false, class: "input-group input-group-sm col-sm-12 col-md-2 p-0 mt-1 mt-sm-0 ml-0 ml-sm-2 #{local_assigns[:classes]}" do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search...", type: 'text', class: "form-control" %>
+  <span class="input-group-append">
+    <%= button_tag type: "submit", class: "btn btn-sm btn-outline-dark" do %>
+      <i class="fa fas fa-search"></i>
+    <% end %>
+  </span>
+<% end %>

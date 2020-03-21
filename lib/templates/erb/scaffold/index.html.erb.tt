@@ -1,5 +1,7 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item active mr-auto"><%= plural_table_name.capitalize %></li>
+  <%%= render '/partials/breadcrumb/add', model: <%= singular_table_name.capitalize %> %>
+  <%%= render '/partials/breadcrumb/search' %>
 </ol>
 <div class="card-columns">
   <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>

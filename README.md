@@ -1,7 +1,7 @@
 # Rails 6  
 ## Boilerplate for Webpacker, Vue, Bootstrap, FontAwesome
 
-This is a boilerplate project sharing some tips and recommendations for using Rails 6 with Webpacker, Vue, Bootstrap and FontAwesome.
+This is a boilerplate project sharing some tips and strategies for using Rails 6 with Webpacker, Vue, Bootstrap and FontAwesome.
 
 #### Init Rails Project
 First create a new Rails project with options to use Git, Postgres as a database and Vue for the frontend framework.
@@ -414,7 +414,9 @@ rails generate controller Pages index --no-javascripts --no-stylesheets --no-hel
 
 #### Generate Scaffold Models
 ```
-rails generate scaffold Tip type:string title:string body:text deleted_at:datetime --force --no-javascripts --no-stylesheets --no-helper --no-assets
+rails generate devise User type:string name:string initials:string deleted_at:datetime --force --no-javascripts --no-stylesheets --no-helper --no-assets
+
+rails generate scaffold Step type:string name:string description:text ordinal:integer deleted_at:datetime --force --no-javascripts --no-stylesheets --no-helper --no-assets
 ```
 
 #### Reset Database

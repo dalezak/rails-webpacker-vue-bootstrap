@@ -1,0 +1,4 @@
+<% url ||= edit_polymorphic_path(model) %>
+<%= link_to url, class: "btn btn-outline-secondary btn-sm", title: "Edit #{model.class.to_s.downcase}" do %>
+  <i class="fa fa-fw fas fa-edit"></i>
+<% end if can?(:edit, model) %>

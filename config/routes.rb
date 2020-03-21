@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  resources :steps
   get "/", to: "pages#index", as: :home
 
   match "bad-request", to: "errors#bad_request", as: "bad_request", via: :all

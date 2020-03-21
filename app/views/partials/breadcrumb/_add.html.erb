@@ -1,0 +1,4 @@
+<% url ||= new_polymorphic_path(model) %>
+<%= link_to url, class: "btn btn-outline-secondary btn-sm mr-2", title: "Add #{model.to_s.downcase}" do  %>
+  <i class="fa fa-fw fas fa-plus"></i>
+<% end if can?(:create, model) %>

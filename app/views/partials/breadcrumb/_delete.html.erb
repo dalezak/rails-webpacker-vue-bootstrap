@@ -1,0 +1,4 @@
+<% url ||= polymorphic_path(model) %>
+<%= link_to url, method: :delete, data: { confirm: "Delete #{model.class.to_s.downcase}?" }, class: "btn btn-outline-danger btn-sm ml-2", title: "Delete #{model.class.to_s.downcase}" do %>
+  <i class="fa fa-fw fas fa-trash-alt"></i>
+<% end if can?(:destroy, model) %>
