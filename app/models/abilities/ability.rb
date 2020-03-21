@@ -5,8 +5,7 @@ class Ability
     alias_action :read, :create, to: :read_create
     alias_action :read, :update, to: :read_update
     if user.nil?
-      can :create, User
-      can :forgot, User
+      self.merge(GuestAbility.new(user))
     elsif user.is_a?(Admin)
       self.merge(AdminAbility.new(user))
     else 

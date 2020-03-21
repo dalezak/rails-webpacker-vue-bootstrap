@@ -2,7 +2,18 @@ class StepsController < ApplicationController
   before_action :set_step, only: [:show, :edit, :update, :destroy]
 
   def index
-    @steps = Step.all
+    authorize! :index, Step
+    @search = params.fetch(:search, nil)
+    @offset = params.fetch(:offset, 0).to_i
+    @limit = [params.fetch(:limit, 12).to_i, 48].min
+    query = Step.for_search(@search)
+    @steps = query.limit(@limit).offset(@offset).order(ordinal: :asc).all
+    @steps_count = query.count(:all)
+    respond_to do |format|
+      format.html { render layout: true }
+      format.json { }
+    end
+
   end
 
   def show
