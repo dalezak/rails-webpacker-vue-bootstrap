@@ -35,7 +35,7 @@ gem "js-routes", "~> 1.4"
 gem "vueonrails", "~> 0.3.0"
 
 gem "httparty", "~> 0.18.0"
-gem "nokogiri", "~> 1.10"
+gem "nokogiri", "~> 1.11"
 gem "simple-rss", "~> 1.3"
 gem "sitemap_generator", "~> 6.1"
 
