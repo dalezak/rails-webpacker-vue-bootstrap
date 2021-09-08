@@ -52,7 +52,7 @@ group :development, :test do
   gem "memory_profiler", "~> 0.9.14"
   gem "derailed_benchmarks", "~> 1.6"
   gem "rubocop", "~> 0.80.1"
-  gem "better_errors", "~> 2.6"
+  gem "better_errors", "~> 2.8"
   gem "binding_of_caller", "~> 0.8.0"
   gem "rack-mini-profiler", "~> 2.0"
 end
