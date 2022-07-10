@@ -177,5 +177,5 @@ Layout/SpaceInsideBlockBraces:
 Style/BracesAroundHashParameters:
   Enabled: false
   
- Style/WhileUntilDo:
+Style/WhileUntilDo:
   Enabled: false 
